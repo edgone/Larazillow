@@ -3,7 +3,7 @@
     class="border-b-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 w-full shadow-lg mb-4">
     <div class="container mx-auto">
       <nav class="p-4 flex items-center justify-between">
-        <div class="flex text-lg gap-2">
+        <div class="flex items-center text-lg gap-2">
           <Link :href="route('listing.index')"
             class="dark:text-indigo-100 dark:hover:text-indigo-200 text-indigo-800 hover:text-indigo-900 py-2 px-6 rounded-md font-medium">
           Listings
@@ -33,9 +33,9 @@
           </div>
         </div>
         <div v-else class="flex items-center gap-4">
-          <Link :href="route('login')">Login</Link>
           <Link :href="route('user-account.create')" class="btn-primary">Register
           </Link>
+          <Link :href="route('login')">Login</Link>
         </div>
       </nav>
     </div>
