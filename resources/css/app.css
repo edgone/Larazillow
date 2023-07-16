@@ -30,4 +30,8 @@
     .btn-normal {
         @apply bg-gray-600 text-indigo-100 hover:bg-gray-500 py-2 px-6 rounded-md font-medium;
     }
+
+    .btn-outline {
+        @apply p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-700 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-700;
+    }
 }

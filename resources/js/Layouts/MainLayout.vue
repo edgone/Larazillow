@@ -21,8 +21,9 @@
           </Link>
         </div>
         <div class="flex items-center gap-4" v-if="user">
-          <div class="text-sm text-gray-500 dark:text-gray-200">{{ user.name }}
-          </div>
+          <Link :href="route('realtor.listing.index')"
+            class="text-sm text-gray-500 dark:text-gray-200">{{ user.name }}
+          </Link>
           <Link :href="route('listing.create')" class="btn-primary">
           +
           New
