@@ -12,13 +12,6 @@
       <ListingAddress :listing="listing" class="text-gray-400" />
       </Link>
     </div>
-    <div class="flex gap-4">
-      <div>
-        <Link :href="route('listing.edit', { listing: listing.id })"
-          class="text-indigo-300">Edit
-        </Link>
-      </div>
-    </div>
   </Box>
 </template>
 

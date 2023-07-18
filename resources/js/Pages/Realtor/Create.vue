@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="update">
+  <form @submit.prevent="create">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-2">
         <label class="label">Beds</label>
@@ -26,7 +26,8 @@
       </div>
 
       <div class="col-span-2">
-        <label class="label">Post Code</label>
+        <label class="label">Post
+          Code</label>
         <input v-model="form.code" type="text" class="input" />
         <ErrorMessage v-if="form.errors.code" :error="form.errors.code" />
       </div>
@@ -38,7 +39,8 @@
       </div>
 
       <div class="col-span-2">
-        <label class="label">Street Nr</label>
+        <label class="label">Street
+          Nr</label>
         <input v-model="form.street_nr" type="text" class="input" />
         <ErrorMessage v-if="form.errors.street_nr"
           :error="form.errors.street_nr" />
@@ -51,41 +53,26 @@
       </div>
 
       <div class="col-span-6">
-        <button type="submit" class="btn-primary">Edit</button>
+        <button type="submit" class="btn-primary">Create</button>
       </div>
     </div>
   </form>
 </template>
 
 <script setup>
-import ErrorMessage from '@/Components/UI/ErrorMessage.vue'
 import { useForm } from '@inertiajs/vue3';
-
-const props = defineProps({
-  listing: Object,
-});
+import ErrorMessage from '@/Components/UI/ErrorMessage.vue';
 
 const form = useForm({
-  beds: props.listing.beds,
-  baths: props.listing.baths,
-  area: props.listing.area,
-  city: props.listing.city,
-  street: props.listing.street,
-  code: props.listing.code,
-  street_nr: props.listing.street_nr,
-  price: props.listing.price,
+  beds: 0,
+  baths: 0,
+  area: 0,
+  city: null,
+  street: null,
+  code: null,
+  street_nr: null,
+  price: 0,
 });
 
-const update = () => form.put(route('listing.update', { listing: props.listing.id }))
+const create = () => form.post(route('realtor.listing.store'))
 </script>
-
-<style scoped>
-label {
-  margin-right: 2em;
-}
-
-div {
-  padding: 2px;
-  margin-bottom: 10px;
-}
-</style>

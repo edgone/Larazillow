@@ -10,7 +10,7 @@
           </Link>
           <div v-if="user">
             <Link
-              :href="route('listing.edit', { listing: page.props.listing.id })"
+              :href="route('realtor.listing.edit', { listing: page.props.listing.id })"
               class="dark:text-indigo-200 dark:hover:bg-indigo-200 dark:hover:text-indigo-800 py-2 px-6 rounded-md font-medium"
               v-if="page.component === 'Listing/Show'">Edit</Link>
           </div>
@@ -24,7 +24,7 @@
           <Link :href="route('realtor.listing.index')"
             class="text-sm text-gray-500 dark:text-gray-200">{{ user.name }}
           </Link>
-          <Link :href="route('listing.create')" class="btn-primary">
+          <Link :href="route('realtor.listing.create')" class="btn-primary">
           +
           New
           Listing</Link>
@@ -43,7 +43,7 @@
   </header>
   <main class="container mx-auto p-4 w-full">
     <div v-if="flashSuccess"
-      class="mb-4 border rounded-md shadow-sm font-bold text-gray-100 dark:text-gray-900 border-green-200 dark:border-green-900 bg-green-500 dark:bg-green-500 p-4">
+      class="mb-4 border rounded-md shadow-sm font-medium text-gray-100 dark:text-gray-900 border-green-200 dark:border-green-900 bg-green-500 dark:bg-green-500 p-4">
       {{ flashSuccess }}
     </div>
     <slot />
