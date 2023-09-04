@@ -1,7 +1,5 @@
 <template>
-    <header
-        class="border-b-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 w-full shadow-lg mb-4"
-    >
+    <header class="border-b-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 w-full shadow-lg mb-4">
         <div class="container mx-auto">
             <nav class="p-4 flex items-center justify-between">
                 <div class="flex items-center text-lg gap-2">
@@ -24,39 +22,19 @@
                         >
                     </div>
                 </div>
-                <div
-                    class="text-xl text-indigo-600 dark:text-indigo-300 font-bold"
-                >
+                <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold">
                     <Link :href="route('listing.index')"> Larazillow </Link>
                 </div>
                 <div class="flex items-center gap-4" v-if="user">
-                    <Link
-                        :href="route('realtor.listing.index')"
-                        class="text-sm text-gray-500 dark:text-gray-200"
-                        >{{ user.name }}
-                    </Link>
-                    <Link
-                        :href="route('realtor.listing.create')"
-                        class="btn-primary"
-                    >
-                        + New Listing</Link
-                    >
+                    <Link :href="route('realtor.listing.index')" class="text-sm text-gray-500 dark:text-gray-200">{{ user.name }} </Link>
+                    <Link :href="route('realtor.listing.create')" class="btn-primary"> + New Listing</Link>
                     <div>
-                        <Link
-                            :href="route('logout')"
-                            method="delete"
-                            as="button"
-                            >Logout
-                        </Link>
+                        <Link :href="route('logout')" method="delete" as="button">Logout </Link>
                     </div>
                 </div>
                 <div v-else class="flex items-center gap-4">
-                    <Link
-                        :href="route('user-account.create')"
-                        class="btn-primary"
-                        >Register
-                    </Link>
-                    <Link :href="route('login')">Login</Link>
+                    <Link :href="route('user-account.create')" class="btn-primary">Register </Link>
+                    <Link :href="route('login')">Sign-in</Link>
                 </div>
             </nav>
         </div>

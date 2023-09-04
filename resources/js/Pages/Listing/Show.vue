@@ -2,16 +2,9 @@
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
         <Box class="md:col-span-7 flex items-center w-full">
             <div v-if="listing.images.length" class="grid grid-cols-2 gap-1">
-                <img
-                    v-for="image in listing.images"
-                    :key="image.id"
-                    :src="image.src"
-                    class="aspect-[4/3] object-cover rounded-md"
-                />
+                <img v-for="image in listing.images" :key="image.id" :src="image.src" class="aspect-[4/3] object-cover rounded-md" />
             </div>
-            <div v-else class="w-full text-center font-medrium text-gray-500">
-                No images
-            </div>
+            <div v-else class="w-full text-center font-medrium text-gray-500">No images</div>
         </Box>
         <div class="md:col-span-5 flex flex-col gap-4">
             <Box>
@@ -23,9 +16,7 @@
             <Box>
                 <template #header> Monthly Payment </template>
                 <div>
-                    <label class="label"
-                        >Interest rate ({{ interestRate }})</label
-                    >
+                    <label class="label">Interest rate ({{ interestRate }})</label>
                     <input
                         v-model.number="interestRate"
                         type="range"
@@ -72,6 +63,8 @@
                     </div>
                 </div>
             </Box>
+            <MakeOffer v-if="user && !offerMade" @offer-updated="offer = $event" :listing-id="listing.id" :price="listing.price" />
+            <OfferMade v-if="user && offerMade" :offer="offerMade" />
         </div>
     </div>
 </template>
@@ -81,8 +74,11 @@ import ListingSpace from "@/Components/ListingSpace.vue";
 import ListingAddress from "@/Components/ListingAddress.vue";
 import Price from "@/Components/UI/Price.vue";
 import Box from "@/Components/UI/Box.vue";
+import MakeOffer from "@/Pages/Listing/Show/Components/MakeOffer.vue";
+import OfferMade from "@/Pages/Listing/Show/Components/OfferMade.vue";
 
-import { ref } from "vue";
+import { usePage } from "@inertiajs/vue3";
+import { ref, computed } from "vue";
 
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 
@@ -91,11 +87,14 @@ const duration = ref(25);
 
 const props = defineProps({
     listing: Object,
+    offerMade: Object,
 });
 
-const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
-    props.listing.price,
-    interestRate,
-    duration
-);
+const offer = ref(props.listing.price);
+
+const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(offer, interestRate, duration);
+
+const page = usePage();
+
+const user = computed(() => page.props.user);
 </script>
