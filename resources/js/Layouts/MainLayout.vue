@@ -5,7 +5,7 @@
                 <div class="flex items-center text-lg gap-2">
                     <Link
                         :href="route('listing.index')"
-                        class="dark:text-indigo-100 dark:hover:text-indigo-200 text-indigo-800 hover:text-indigo-900 py-2 px-6 rounded-md font-medium"
+                        class="dark:text-indigo-100 dark:hover:text-indigo-200 text-indigo-800 hover:text-indigo-900 py-2 pr-6 rounded-md font-medium"
                     >
                         Listings
                     </Link>
@@ -26,6 +26,15 @@
                     <Link :href="route('listing.index')"> Larazillow </Link>
                 </div>
                 <div class="flex items-center gap-4" v-if="user">
+                    <Link :href="route('notification.index')" class="text-gray-500 relative pr-2 py-2 text-lg">
+                        🔔
+                        <div
+                            v-if="notificationCount"
+                            class="absolute right-0 top-0 w-5 -h-5 bg-red-700 dark:bg-red-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-sm text-center"
+                        >
+                            {{ notificationCount }}
+                        </div>
+                    </Link>
                     <Link :href="route('realtor.listing.index')" class="text-sm text-gray-500 dark:text-gray-200">{{ user.name }} </Link>
                     <Link :href="route('realtor.listing.create')" class="btn-primary"> + New Listing</Link>
                     <div>
@@ -59,4 +68,6 @@ const page = usePage();
 const flashSuccess = computed(() => page.props.flash.success);
 
 const user = computed(() => page.props.user);
+
+const notificationCount = computed(() => Math.min(user.value.notificationCount, 9));
 </script>
